@@ -4,14 +4,14 @@ platform: "linux"
 version: "${VERSION}"
 section: "default"
 priority: "extra"
-maintainer: "Tomas Doran <tdoran@yelp.com>"
+maintainer: "Alex Eghd <alexeghd@gmail.com>"
 description: |
   Anycast in AWS.
 vendor: "Yelp"
-homepage: "https://github.com/bobtfish/AWSnycast/"
+homepage: "https://github.com/alexeghd/awsnycast/"
 license: "Apache License 2.0"
 contents:
-  - src: ./AWSnycast
-    dst: /usr/bin/AWSnycast
+  - src: ./awsnycast
+    dst: /usr/bin/awsnycast
 
 

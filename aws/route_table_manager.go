@@ -8,7 +8,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/ec2"
-	"github.com/bobtfish/AWSnycast/version"
+	"github.com/alexeghd/awsnycast/version"
 	log "github.com/sirupsen/logrus"
 )
 

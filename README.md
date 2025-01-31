@@ -1,13 +1,11 @@
 # AWSnycast
 
-[![Build Status](https://travis-ci.org/bobtfish/AWSnycast.svg)](https://travis-ci.org/bobtfish/AWSnycast) [![Coverage Status](https://coveralls.io/repos/bobtfish/AWSnycast/badge.svg?branch=master&service=github)](https://coveralls.io/github/bobtfish/AWSnycast?branch=master)
-
 AWSnycast is a routing daemon for AWS route tables, to simulate an Anycast like service, and act as an
 extension of in-datacenter Anycast. It can also be used to provide HA NAT service.
 
 # WARNING
 
-Please use release version 0.1.5 rather than master.
+Please use release version 0.3.0 rather than master.
 
 # Anycast in AWS?
 
@@ -38,9 +36,9 @@ in a public subnet. AWSnycast can publish routes for one or more NAT instances f
 you to deploy one or more NAT instances per VPC.
 
 AWS have recently added a [NAT gateway](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html)
-product, which simplifies redunent NAT, and allows you to burst to 10G (which needs high spec NAT instances to do).
+product, which simplifies redundant NAT, and allows you to burst to 10G (which needs high spec NAT instances to do).
 
-For small amounts of traffic, NAT gateway is cheaper than NAT instancesm for large amounts of traffic it becomes
+For small amounts of traffic, NAT gateway is cheaper than NAT instances for large amounts of traffic it becomes
 more expensive - however NAT instances with AWSnycast probably have a lower reliability, as HA/failover won't happen
 until the failed machine is stopped/blackholed.
 
@@ -53,7 +51,7 @@ it's down.
 # How does this even work?
 
 You can setup routes in AWS to go to an individual instance. This means that you inject routes
-that are *outside* the addesses space for your VPC, and point them to an instance, failing over
+that are *outside* the addresses space for your VPC, and point them to an instance, failing over
 to a different instance if the machine providing the service fails.
 
 All you have to do on the instance itself is setup a network interface which can deal with this traffic;
@@ -97,7 +95,7 @@ In the [tests/integration](tests/integration) folder, there is [Terraform](http:
 a simple AWS VPC, with 2 AZs and 2 NAT machines (with HA and failover), and AWSnycast setup.
 
 To try this, you can install the binary and then _terraform apply_ in that directory to build
-the example network, then _make sshnat_ to log into one of the machines,
+the example network, then _make ssh nat_ to log into one of the machines,
 and _journalctl -u awsnycast_ to view the logs.
 
 Try terminating one of the machines and watch routes fail over!
@@ -109,25 +107,25 @@ FIXME!! More details about how to test / curl things here..
 You can install binary release versions onto x86 Linux
 directly from github, e.g.
 
-    sudo wget https://github.com/bobtfish/AWSnycast/releases/download/v0.1.0/AWSnycast -O /usr/local/bin/AWSnycast
-    sudo chmod 700 /usr/local/bin/AWSnycast
+    sudo wget https://github.com/alexeghd/awsnycast/releases/download/v0.3.0/awsnycast -O /usr/local/bin/awsnycast
+    sudo chmod 700 /usr/local/bin/awsnycast
 
 or you can install the .deb or .rpm packages found at the same location
 
 # Building from source
 
-You need go installed to build this project (tested on go 1.5+1.6). 
+You need go installed to build this project (tested on go 1.13). 
 
 Once you have go installed, and the GOPATH environment variable setup
-(to, for example, /Users/tdoran/go), you should be able to install with:
+(to, for example, /Users/alexeghd/go), you should be able to install with:
 
     go get github.com/mattn/gom
-    go get github.com/bobtfish/AWSnycast
-    cd /Users/tdoran/go/src/github.com/bobtfish/AWSnycast
+    go get github.com/alexeghd/awsnycast
+    cd /Users/alexeghd/go/src/github.com/alexeghd/awsnycast
     make
 
 This will build the binary at the top level of the checkout
-(i.e. in /Users/tdoran/go/src/github.com/bobtfish/AWSnycast/AWSnycast in my example)
+(i.e. in /Users/alexeghd/go/src/github.com/alexeghd/awsnycast/awsnycast in my example)
 
 # Running it
 
@@ -436,4 +434,3 @@ Copyright Tomas Doran 2015
 # License
 
 Apache2 - See the included LICENSE file for more details.
-

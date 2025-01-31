@@ -4,9 +4,9 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/service/ec2"
-	"github.com/bobtfish/AWSnycast/aws"
-	"github.com/bobtfish/AWSnycast/config"
-	"github.com/bobtfish/AWSnycast/instancemetadata"
+	"github.com/alexeghd/awsnycast/aws"
+	"github.com/alexeghd/awsnycast/config"
+	"github.com/alexeghd/awsnycast/instancemetadata"
 	log "github.com/sirupsen/logrus"
 )
 

@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"regexp"
 
-	"github.com/bobtfish/AWSnycast/aws"
+	"github.com/alexeghd/awsnycast/aws"
 	"github.com/hashicorp/go-multierror"
 	"gopkg.in/yaml.v2"
 )

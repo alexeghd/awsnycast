@@ -3,9 +3,9 @@ package config
 import (
 	"errors"
 	"fmt"
-	"github.com/bobtfish/AWSnycast/aws"
-	"github.com/bobtfish/AWSnycast/healthcheck"
-	"github.com/bobtfish/AWSnycast/instancemetadata"
+	"github.com/alexeghd/awsnycast/aws"
+	"github.com/alexeghd/awsnycast/healthcheck"
+	"github.com/alexeghd/awsnycast/instancemetadata"
 	"github.com/hashicorp/go-multierror"
 	"gopkg.in/yaml.v2"
 	"io/ioutil"

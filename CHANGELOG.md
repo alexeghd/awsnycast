@@ -1,3 +1,6 @@
+Version 0.3.0 - 2025-02-01
+ - Fork and update module root
+
 Version 0.2.1 - 2018-12-07
  - Fix a bug causing crashes when using remote healthchecks
 

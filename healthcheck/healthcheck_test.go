@@ -3,7 +3,7 @@ package healthcheck
 import (
 	"errors"
 	"fmt"
-	"github.com/bobtfish/AWSnycast/testhelpers"
+	"github.com/alexeghd/awsnycast/testhelpers"
 	"github.com/stretchr/testify/assert"
 	"io/ioutil"
 	"log"

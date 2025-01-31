@@ -1,4 +1,4 @@
-module github.com/bobtfish/AWSnycast
+module github.com/alexeghd/awsnycast
 
 go 1.13
 

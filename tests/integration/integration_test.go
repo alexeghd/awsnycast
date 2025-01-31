@@ -1,7 +1,7 @@
 package integration_test
 
 import (
-	. "github.com/bobtfish/AWSnycast/tests/integration"
+	. "github.com/alexeghd/awsnycast/tests/integration"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 )

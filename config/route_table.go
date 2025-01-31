@@ -4,9 +4,9 @@ import (
 	"errors"
 	"fmt"
 	"github.com/aws/aws-sdk-go/service/ec2"
-	"github.com/bobtfish/AWSnycast/aws"
-	"github.com/bobtfish/AWSnycast/healthcheck"
-	"github.com/bobtfish/AWSnycast/instancemetadata"
+	"github.com/alexeghd/awsnycast/aws"
+	"github.com/alexeghd/awsnycast/healthcheck"
+	"github.com/alexeghd/awsnycast/instancemetadata"
 	log "github.com/sirupsen/logrus"
 	"github.com/hashicorp/go-multierror"
 )

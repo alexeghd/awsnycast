@@ -2,7 +2,7 @@ package healthcheck
 
 import (
 	"errors"
-	utils "github.com/bobtfish/AWSnycast/utils"
+	utils "github.com/alexeghd/awsnycast/utils"
 	log "github.com/sirupsen/logrus"
 	"github.com/hashicorp/go-multierror"
 	"os/exec"
