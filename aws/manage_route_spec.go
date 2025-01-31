@@ -6,11 +6,11 @@ import (
 	"net"
 	"strings"
 
-	"github.com/aws/aws-sdk-go/service/ec2"
 	"github.com/alexeghd/awsnycast/healthcheck"
 	"github.com/alexeghd/awsnycast/instancemetadata"
-	log "github.com/sirupsen/logrus"
+	"github.com/aws/aws-sdk-go/service/ec2"
 	"github.com/hashicorp/go-multierror"
+	log "github.com/sirupsen/logrus"
 )
 
 type ManageRoutesSpec struct {

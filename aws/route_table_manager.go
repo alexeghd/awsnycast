@@ -4,11 +4,11 @@ import (
 	"errors"
 	"os/exec"
 
+	"github.com/alexeghd/awsnycast/version"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/ec2"
-	"github.com/alexeghd/awsnycast/version"
 	log "github.com/sirupsen/logrus"
 )
 

@@ -3,10 +3,10 @@ package daemon
 import (
 	"time"
 
-	"github.com/aws/aws-sdk-go/service/ec2"
 	"github.com/alexeghd/awsnycast/aws"
 	"github.com/alexeghd/awsnycast/config"
 	"github.com/alexeghd/awsnycast/instancemetadata"
+	"github.com/aws/aws-sdk-go/service/ec2"
 	log "github.com/sirupsen/logrus"
 )
 
