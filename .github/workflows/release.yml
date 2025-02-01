@@ -1,0 +1,74 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    environment:
+      name: Release
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '>=1.23.0'
+          # go-version-file: "go.mod"
+      - uses: golangci/golangci-lint-action@v6
+  release:
+    runs-on: ubuntu-latest
+    needs: lint
+    environment:
+      name: Release
+    steps:
+      # Step 1
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # to fetch all history for all branches and tags.
+          fetch-tags: true
+          persist-credentials: false
+      # Step 2
+      - name: Bump version and push tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v6.2
+        with:
+          github_token: ${{ secrets.GH_TOKEN }}
+      # Step 3
+      - name: Fetch tags
+        run: git fetch --prune --unshallow --tags
+      # Step 4
+      - name: Import GPG key
+        id: import_gpg
+        uses: crazy-max/ghaction-import-gpg@v6
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+      # Step 5
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v4
+        with:
+          extra_plugins: |
+            @semantic-release/git
+            @semantic-release/exec
+            @semantic-release/changelog
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      # Step 6
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '>=1.23.0'
+          # go-version-file: "go.mod"
+      # Step 7
+      - name: Run GoReleaser
+        uses: goreleaser/goreleaser-action@v6
+        with:
+          distribution: goreleaser
+          version: "~> v2"
+          args: release --clean
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GPG_FINGERPRINT: ${{ steps.import_gpg.outputs.fingerprint }}

@@ -4,14 +4,12 @@ platform: "linux"
 version: "${VERSION}"
 section: "default"
 priority: "extra"
-maintainer: "Alex Eghd <alexeghd@gmail.com>"
+maintainer: "Alex Eghd <alexeghd+awsnycast@gmail.com>"
 description: |
-  Anycast in AWS.
-vendor: "Yelp"
+  AWSnycast is a routing daemon for AWS route tables, to simulate an Anycast like service, and act as an extension of in-datacenter Anycast. It can also be used to provide HA NAT service.
+vendor: "Alex Eghd"
 homepage: "https://github.com/alexeghd/awsnycast/"
 license: "Apache License 2.0"
 contents:
   - src: ./awsnycast
     dst: /usr/bin/awsnycast
-
-

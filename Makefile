@@ -1,13 +1,11 @@
 # Static binaries are where it's at!
 CGO_ENABLED=0
 
-TRAVIS_BUILD_NUMBER?=debug0
-
 .PHONY: coverage get test clean
 
-all: AWSnycast
+all: awsnycast
 
-AWSnycast: *.go */*.go
+awsnycast: *.go */*.go
 	go get ./...
 	go build -a -tags netgo -ldflags '-w' .
 
@@ -24,7 +22,7 @@ integration:
 	go test ./...
 
 clean:
-	rm -rf dist */coverage.out */coverprofile.out coverage.out coverprofile.out AWSnycast
+	rm -rf dist */coverage.out */coverprofile.out coverage.out coverprofile.out awsnycast
 	make -C package clean
 
 realclean: clean
@@ -38,13 +36,14 @@ coverage.out:
 	cd instancemetadata ; go test -coverprofile=coverage.out ./... ; cd ..
 	echo "mode: set" > coverage.out && cat */coverage.out | grep -v mode: | sort -r | awk '{if($$1 != last) {print $$0;last=$$1}}' >> coverage.out
 
-itest_%: AWSnycast
+itest_%: awsnycast
 	mkdir -p dist
 	make -C package itest_$*
 
-dist: AWSnycast
+dist: awsnycast
 	rm -rf dist/ *.deb
-	strip AWSnycast
-	docker run --rm -t --interactive -v $PWD:/awsnycast -w /awsnycast --entrypoint="" goreleaser/nfpm  /usr/local/bin/nfpm package --config nfpm.yaml --target AWSnycast.deb
+	rm -rf dist/ *.rpm
+	strip awsnycast
+	docker run --rm -t --interactive -v $PWD:/awsnycast -w /awsnycast --entrypoint="" goreleaser/nfpm  /usr/local/bin/nfpm package --config nfpm.yaml --target awsnycast.deb
 	mkdir dist
 	mv *.deb *.rpm dist/
